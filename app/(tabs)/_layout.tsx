@@ -1,36 +1,37 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+    <Tabs>
       <Tabs.Screen
-        name="index"
+        name="allocations"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+          title: 'Allocations',
+          headerShown: false,
+          tabBarIcon: ({ color, focused, size }) => (
+            <MaterialIcons name={'account-tree'} size={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="accounts"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          title: 'Accounts',
+          tabBarIcon: ({ color, focused, size }) => (
+            <MaterialIcons name={'account-balance-wallet'} size={size} color={color} />
           ),
         }}
+      />
+      <Tabs.Screen
+        name="index"
+        options={{ href: null }}
       />
     </Tabs>
   );
